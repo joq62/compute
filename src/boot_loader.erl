@@ -96,9 +96,9 @@ clone([{Application,_Vsn,GitPath}|T],Acc)->
 	false->
 	    ok
     end,
-    ok=file:make_dir(AppDir),
+  %  ok=file:make_dir(AppDir),
     
-    GitInfo=os:cmd("git clone "++GitPath++" "++AppDir),
+    GitInfo=os:cmd("git clone "++GitPath),
     Ebin=filename:join(AppDir,"ebin"),
     %check if app file is present 
     
