@@ -63,6 +63,9 @@ init([]) ->
 %%          {stop, Reason, Reply, State}   | (terminate/2 is called)
 %%          {stop, Reason, State}            (terminate/2 is called)
 %% --------------------------------------------------------------------
+handle_call({get_nodes}, _From, State) ->
+    Reply = boot_loader:get_nodes(),
+    {reply, Reply, State};
 
 handle_call({stop}, _From, State) ->
     {stop, normal, shutdown_ok, State};
