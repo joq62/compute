@@ -18,7 +18,8 @@
 
 %% --------------------------------------------------------------------
 %-compile(export_all).
--export([initial_boot/0]).
+-export([initial_boot/0,
+	 get_nodes/0]).
 
 %% ====================================================================
 %% External functions
@@ -32,6 +33,16 @@ initial_boot()->
     {ok,[ConnectedNodes,StartInfo,CloneInfo,CleanCreateDirsResult]}.
 
 
+
+%% --------------------------------------------------------------------
+%% Function:start/0 
+%% Description: Initiate the eunit tests, set upp needed processes etc
+%% Returns: non
+%% --------------------------------------------------------------------
+get_nodes()->
+    {ok,I}=file:consult(?BootConfig),   
+    NodesToConnect=proplists:get_value(nodes_to_contact,I),
+    {ok,NodesToConnect}.
 
 %% --------------------------------------------------------------------
 %% Function:start/0 

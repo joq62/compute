@@ -11,7 +11,7 @@
 %% Behavioural exports
 %% --------------------------------------------------------------------
 -export([
-
+	 get_nodes/0
         ]).
 
 %% --------------------------------------------------------------------
@@ -50,3 +50,5 @@ boot()->
 start()-> gen_server:start_link({local, ?SERVER}, ?SERVER, [], []).
 stop()-> gen_server:call(?SERVER, {stop},infinity).
    
+get_nodes()->
+    gen_server:call(?SERVER, {get_nodes},infinity).
