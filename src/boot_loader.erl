@@ -9,7 +9,7 @@
 %% --------------------------------------------------------------------
 %% Include files
 %% --------------------------------------------------------------------
-
+-include_lib("kernel/include/logger.hrl").
 %%---------------------------------------------------------------------
 %% Records for test
 %%
@@ -105,7 +105,10 @@ clone([{Application,_Vsn,GitPath}|T],Acc)->
 	true->
 	    os:cmd("rm -rf "++AppDir);
 	false->
-	    ok
+	    ok;
+	X ->
+	    ?LOG_ALERT(#{module=>?MODULE,funtion=>?FUNCTION_NAME,line=>?LINE,
+			 error=>X})
     end,
   %  ok=file:make_dir(AppDir),
     
