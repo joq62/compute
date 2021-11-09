@@ -12,6 +12,7 @@
 %% Include files
 %% --------------------------------------------------------------------
 % -include("").
+-include_lib("kernel/include/logger.hrl").
 %% --------------------------------------------------------------------
 %% External exports
 
@@ -45,8 +46,10 @@
 %%          {stop, Reason}
 %% --------------------------------------------------------------------
 init([]) ->
-    {ok,_Result}=boot_loader:initial_boot(),
-   
+    {ok,Result}=boot_loader:initial_boot(),
+    ?LOG_NOTICE(#{module=>?MODULE,function=>?FUNCTION_NAME,line=>?LINE,
+		 msg=>"server started/restarted\n",
+		 result=>Result}),
     
     {ok, #state{}}.
 
